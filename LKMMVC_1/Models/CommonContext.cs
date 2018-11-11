@@ -36,5 +36,7 @@ namespace LKMMVC_1.Models
         public System.Data.Entity.DbSet<LKMMVC_1.Models.Biography> Biographies { get; set; }
 
         public System.Data.Entity.DbSet<LKMMVC_1.Models.Education> Educations { get; set; }
+
+        public System.Data.Entity.DbSet<LKMMVC_1.Models.ManagementBiography> ManagementBiographies { get; set; }
     }
 }
