@@ -1,34 +1,42 @@
 ﻿@model LKMMVC_1.Models.NewsPhoto
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>NewsPhoto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.News.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.News.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhotoLocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhotoLocation)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NewsPhotoID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>NewsPhoto</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.News.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.News.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoLocation)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhotoLocation)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.NewsPhotoID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

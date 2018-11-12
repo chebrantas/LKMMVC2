@@ -17,4 +17,6 @@
     ];
 
     config.removeButtons = 'Print,Save,Templates,Cut,Copy,Paste,Undo,Redo,Find,SelectAll,Language,Flash,PageBreak,Iframe,About';
+    //neleidziame onclick pvz metodu kviesti ir scriptu
+    config.disallowedContent = 'script; *[on*]';
 };

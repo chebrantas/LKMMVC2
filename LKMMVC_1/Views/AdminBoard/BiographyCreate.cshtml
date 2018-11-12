@@ -43,7 +43,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Grįžti į sąrašą", "Biographies")
 </div>
 
 
@@ -52,10 +52,12 @@
 @section scripts
     {
     <script>
-        //RichTextEditor configuracija nustatoma kokios norime ji yra faile ckeditor_config.js
+        //RichTextEditor configuracija nustatoma kokios norime, ji yra faile ckeditor_config.js
         CKEDITOR.replace('Info', {
-            customConfig: '/Content/ckeditor/custom_config/ckeditor_config.js'
+            customConfig: '/Content/ckeditor/custom_config/ckeditor_config.js',
+            
         });
+        
 
     </script>
 }

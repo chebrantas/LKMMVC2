@@ -17,7 +17,7 @@ namespace LKMMVC_1.Controllers
         // GET: NewsPhotos
         public ActionResult Index()
         {
-            var newsPhotoes = db.NewsPhotoes.Include(n => n.News);
+            var newsPhotoes = db.NewsPhotos.Include(n => n.News);
             return View(newsPhotoes.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotoes.Find(id);
+            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace LKMMVC_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NewsPhotoes.Add(newsPhoto);
+                db.NewsPhotos.Add(newsPhoto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -68,7 +68,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotoes.Find(id);
+            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotoes.Find(id);
+            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace LKMMVC_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewsPhoto newsPhoto = db.NewsPhotoes.Find(id);
-            db.NewsPhotoes.Remove(newsPhoto);
+            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
+            db.NewsPhotos.Remove(newsPhoto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

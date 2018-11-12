@@ -17,7 +17,8 @@ namespace LKMMVC_1.Models
 
         
         public DbSet<News> News { get; set; }
-
+        public DbSet<NewsPhoto> NewsPhotos { get; set; }
+        public DbSet<ManagementBiography> ManagementBiographies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,12 +32,5 @@ namespace LKMMVC_1.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<LKMMVC_1.Models.NewsPhoto> NewsPhotoes { get; set; }
-
-        public System.Data.Entity.DbSet<LKMMVC_1.Models.Biography> Biographies { get; set; }
-
-        public System.Data.Entity.DbSet<LKMMVC_1.Models.Education> Educations { get; set; }
-
-        public System.Data.Entity.DbSet<LKMMVC_1.Models.ManagementBiography> ManagementBiographies { get; set; }
     }
 }

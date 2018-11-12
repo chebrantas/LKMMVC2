@@ -155,25 +155,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminBoardController.cs" />
-    <Compile Include="Controllers\BiographiesController.cs" />
-    <Compile Include="Controllers\EducationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NewsPhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Biography.cs" />
+    <Compile Include="Models\Nepanaudotos klases\Biography.cs" />
     <Compile Include="Models\CommonContext.cs" />
     <Compile Include="Models\CommonInitializer.cs" />
-    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Nepanaudotos klases\Education.cs" />
     <Compile Include="Models\EntityTypeConfiguration\EducationConfiguration.cs" />
     <Compile Include="Models\EntityTypeConfiguration\NewsPhotoConfiguration.cs" />
-    <Compile Include="Models\Awards.cs" />
-    <Compile Include="Models\InternationalMissions.cs" />
+    <Compile Include="Models\Nepanaudotos klases\Awards.cs" />
+    <Compile Include="Models\Nepanaudotos klases\InternationalMissions.cs" />
     <Compile Include="Models\ManagementBiography.cs" />
-    <Compile Include="Models\ProfessionalExperience.cs" />
-    <Compile Include="Models\MilitaryRank.cs" />
+    <Compile Include="Models\Nepanaudotos klases\ProfessionalExperience.cs" />
+    <Compile Include="Models\Nepanaudotos klases\MilitaryRank.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsPhoto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -547,21 +545,6 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\NewsPhotos\Create.cshtml" />
-    <Content Include="Views\NewsPhotos\Delete.cshtml" />
-    <Content Include="Views\NewsPhotos\Details.cshtml" />
-    <Content Include="Views\NewsPhotos\Edit.cshtml" />
-    <Content Include="Views\NewsPhotos\Index.cshtml" />
-    <Content Include="Views\Biographies\Create.cshtml" />
-    <Content Include="Views\Biographies\Delete.cshtml" />
-    <Content Include="Views\Biographies\Details.cshtml" />
-    <Content Include="Views\Biographies\Edit.cshtml" />
-    <Content Include="Views\Biographies\Index.cshtml" />
-    <Content Include="Views\Educations\Create.cshtml" />
-    <Content Include="Views\Educations\Delete.cshtml" />
-    <Content Include="Views\Educations\Details.cshtml" />
-    <Content Include="Views\Educations\Edit.cshtml" />
-    <Content Include="Views\Educations\Index.cshtml" />
     <Content Include="Views\AdminBoardGERAS\Create.cshtml" />
     <Content Include="Views\AdminBoardGERAS\Delete.cshtml" />
     <Content Include="Views\AdminBoardGERAS\Details.cshtml" />
@@ -574,6 +557,15 @@
     <Content Include="Views\AdminBoard\Edit.cshtml" />
     <Content Include="Views\AdminBoard\Index.cshtml" />
     <Content Include="Views\AdminBoard\BiographyCreate.cshtml" />
+    <Content Include="Views\NewsPhotos\Create.cshtml" />
+    <Content Include="Views\NewsPhotos\Delete.cshtml" />
+    <Content Include="Views\NewsPhotos\Details.cshtml" />
+    <Content Include="Views\NewsPhotos\Edit.cshtml" />
+    <Content Include="Views\NewsPhotos\Index.cshtml" />
+    <Content Include="Views\AdminBoard\Biographies.cshtml" />
+    <Content Include="Views\AdminBoard\BiographyEdit.cshtml" />
+    <Content Include="Views\AdminBoard\BiographyDelete.cshtml" />
+    <Content Include="Views\AdminBoard\Biographies2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

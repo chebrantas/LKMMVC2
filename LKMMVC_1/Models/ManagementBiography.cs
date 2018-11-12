@@ -11,6 +11,7 @@ namespace LKMMVC_1.Models
     {
         public int ManagementBiographyID { get; set; }
         [Display(Name ="Vadovybės asmuo")]
+        [Required(ErrorMessage = "Būtinas laukelis")]
         public string ManagementPersonName { get; set; }
         [AllowHtml]
         [Display(Name = "Informacija")]

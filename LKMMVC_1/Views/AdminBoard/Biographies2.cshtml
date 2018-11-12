@@ -1,0 +1,23 @@
+﻿@model ManagementBiography
+
+@{
+    ViewBag.Title = "Biographies2";
+}
+
+<h2>Biographies2</h2>
+
+<div>
+    <h4>ManagementBiography</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        @Html.Raw(Model.Info)
+        @Model.Info
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ManagementBiographyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
