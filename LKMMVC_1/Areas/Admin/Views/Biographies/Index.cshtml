@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ManagementBiography>
+
+@{
+    ViewBag.Title = "Biografijos";
+}
+
+<h2>Biografijos</h2>
+
+<p>
+    @Html.ActionLink("Sukurti naują", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagementPersonName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagementPersonName)
+            </td>
+            <td>
+                @Html.ActionLink("Koreguoti", "Edit", new { id = item.ManagementBiographyID }) |
+                @Html.ActionLink("Ištrinti", "Delete", new { id = item.ManagementBiographyID })
+            </td>
+        </tr>
+    }
+
+</table>

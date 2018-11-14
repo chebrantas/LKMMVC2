@@ -4,7 +4,7 @@
 }
 @section beginningscripts
     {
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/plugins/ckeditor/ckeditor.js"></script>
 }
 
 <h2>Biografijos sukūrimas</h2>
@@ -29,8 +29,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Info, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.TextAreaFor(model => model.Info)
-               @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Info)
+                @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -55,9 +55,9 @@
         //RichTextEditor configuracija nustatoma kokios norime, ji yra faile ckeditor_config.js
         CKEDITOR.replace('Info', {
             customConfig: '/Content/ckeditor/custom_config/ckeditor_config.js',
-            
+
         });
-        
+
 
     </script>
 }
