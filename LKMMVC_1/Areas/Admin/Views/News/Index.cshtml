@@ -15,9 +15,6 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PostDate)
         </th>
         <th></th>
@@ -29,14 +26,10 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PostDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.NewsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NewsID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.NewsID })
         </td>
     </tr>

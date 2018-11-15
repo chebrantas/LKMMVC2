@@ -20,21 +20,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             return View(db.News.ToList());
         }
 
-        // GET: Admin/News/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            News news = db.News.Find(id);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
-            return View(news);
-        }
-
+       
         // GET: Admin/News/Create
         public ActionResult Create()
         {
@@ -46,10 +32,12 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsID,Title,Content,PostDate")] News news)
+        public ActionResult Create([Bind(Include = "Title,Content,PostDate")] News news)
         {
             if (ModelState.IsValid)
             {
+                news.Content = HttpUtility.HtmlEncode(news.Content);
+
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +70,8 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                news.Content = HttpUtility.HtmlEncode(news.Content);
+
                 db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -31,7 +31,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         // POST: AdminBoard/BiographyCreate
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ManagementBiographyID,ManagementPersonName,Info")] ManagementBiography managementBiography)
+        public ActionResult Create([Bind(Include = "ManagementPersonName,Info")] ManagementBiography managementBiography)
         {
             if (ModelState.IsValid)
             {

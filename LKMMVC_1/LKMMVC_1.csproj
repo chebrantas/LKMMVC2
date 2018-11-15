@@ -157,6 +157,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BiographiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsViewModelsController.cs" />
     <Compile Include="Controllers\AdminBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsPhoto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\NewsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -537,7 +539,6 @@
     <Content Include="Areas\Admin\Views\Biographies\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Create.cshtml" />
     <Content Include="Areas\Admin\Views\News\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\News\Details.cshtml" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker.css.map" />
@@ -548,6 +549,11 @@
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.min.css.map" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="Areas\Admin\Views\NewsViewModels\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsViewModels\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsViewModels\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsViewModels\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsViewModels\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
