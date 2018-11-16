@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LKMMVC_1.Models;
+using LKMMVC_1.Areas.Admin.ViewModel;
 
 namespace LKMMVC_1.Areas.Admin.Controllers
 {
@@ -58,7 +59,19 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            var newsPhotos = db.NewsPhotos.Where(ph => ph.NewsID == id).ToList();
+
+            NewsViewModel newsViewModel = new NewsViewModel()
+            {
+                NewsID = news.NewsID,
+                PostDate = news.PostDate,
+                Content = news.Content,
+                Title = news.Title,
+                Photos = newsPhotos
+            };
+
+
+            return View(newsViewModel);
         }
 
         // POST: Admin/News/Edit/5

@@ -32,6 +32,5 @@ namespace LKMMVC_1.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<LKMMVC_1.ViewModel.NewsViewModel> NewsViewModels { get; set; }
     }
 }

@@ -9,8 +9,6 @@ namespace LKMMVC_1.ViewModel
 {
     public class NewsViewModel
     {
-        [Key]
-        public int ID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PostDate { get; set; }

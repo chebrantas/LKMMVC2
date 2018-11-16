@@ -29,7 +29,26 @@ namespace LKMMVC_1.Models
                     }
                 }
             });
-            
+            context.News.Add(new News
+            {
+                Content = "Turinys 2",
+                Title = "Pavadinimas 2",
+                PostDate = DateTime.Now,
+                NewsPhotos = new List<NewsPhoto>
+                {
+                    new NewsPhoto
+                    {
+                        NewsID=1,
+                        PhotoLocation=@"Photo\2018\10\grazios foto22",
+                    },
+                    new NewsPhoto
+                    {
+                        NewsID=1,
+                        PhotoLocation=@"Photo\2018\11\grazios foto22",
+                    }
+                }
+            });
+
 
 
             base.Seed(context);

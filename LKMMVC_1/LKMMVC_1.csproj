@@ -157,7 +157,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BiographiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\NewsViewModelsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsViewModelController.cs" />
+    <Compile Include="Areas\Admin\ViewModel\NewsViewModel.cs" />
     <Compile Include="Controllers\AdminBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -539,7 +540,7 @@
     <Content Include="Areas\Admin\Views\Biographies\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Create.cshtml" />
     <Content Include="Areas\Admin\Views\News\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit1.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker.css.map" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker.min.css.map" />
@@ -549,11 +550,8 @@
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.min.css.map" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Content\plugins\datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
-    <Content Include="Areas\Admin\Views\NewsViewModels\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsViewModels\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsViewModels\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsViewModels\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsViewModels\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Editxx.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -609,6 +607,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\NewsViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
