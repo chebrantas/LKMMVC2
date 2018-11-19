@@ -1,10 +1,16 @@
 ﻿@model LKMMVC_1.Areas.Admin.ViewModel.NewsViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Koreguoti";
+}
+@section beginningscripts
+    {
+    @*datepiker stilius*@
+    <link href="~/Content/plugins/datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="~/Content/plugins/ckeditor/ckeditor.js"></script>
 }
 
-<h2>Edit</h2>
+<h2>Koreguoti</h2>
 
 @using (Html.BeginForm())
 {
@@ -14,11 +20,13 @@
     <h4>NewsViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.NewsID)
+    
     <div class="form-group">
-        @Html.LabelFor(model => model.NewsID, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PostDate, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NewsID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NewsID, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.PostDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PostDate, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -38,43 +46,14 @@
         </div>
     </div>
 
+
     <div class="form-group">
-        @Html.LabelFor(model => model.PostDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.NewsPhotoID, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PostDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PostDate, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.NewsPhotoID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NewsPhotoID, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    @foreach (var item in Model.Photos)
-    {
-        <div class="form-group">
-            @Html.Label(item.NewsPhotoID.ToString(), htmlAttributes: new { @class = "control-label col-md-2" })
-            @*@Html.LabelFor(model => model.Photos, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.Editor(item.NewsPhotoID.ToString(),"olia", new { htmlAttributes = new { @class = "form-control", type = "file", enctype = "multipart/form-data" } })
-                @*@Html.EditorFor(model => model.PostDate, new { htmlAttributes = new { @class = "form-control" } })*@
-                @*@Html.ValidationMessageFor(model => model.PostDate, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-    }
-
-
-    <ol>
-        @foreach (var item in Model.Photos)
-        {
-            <li> @item.NewsPhotoID  @item.PhotoLocation</li>
-        }
-    </ol>
-
-    @using (Html.BeginForm("Action", "Controller", FormMethod.Post, new
-    { enctype = "multipart/form-data" }))
-    {
-        @Html.TextBoxFor(m => m.PostDate, new { type = "file" })
-        @Html.ValidationMessageFor(m => m.PostDate)
-    }
-
-
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -87,3 +66,29 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section scripts
+    {
+    <script src="~/Content/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/plugins/datepicker/locales/bootstrap-datepicker.lt.min.js"></script>
+    <script>
+        //RichTextEditor configuracija nustatoma kokios norime, ji yra faile ckeditor_config.js
+        CKEDITOR.replace('Content', {
+            customConfig: '/Content/plugins/ckeditor/custom_config/ckeditor_config.js',
+
+        });
+
+        $('#PostDate').datepicker({
+            format: "yyyy-mm-dd",
+            weekStart: 1,
+            todayBtn: "linked",
+            clearBtn: true,
+            daysOfWeekHighlighted: "0,6",
+            autoclose: true,
+            todayHighlight: true,
+            language: 'lt'
+        });
+
+    </script>
+}

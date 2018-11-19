@@ -13,8 +13,9 @@ namespace LKMMVC_1.Areas.Admin.ViewModel
         [AllowHtml]
         public string Content { get; set; }
         public DateTime PostDate { get; set; }
+        public string FileName { get; set; }
         public int NewsPhotoID { get; set; }
         //nuotraukos kelias serveryje kur fiziskai padeta
-        public List<NewsPhoto> Photos { get; set; }
+        public virtual ICollection<NewsPhoto> NewsPhotos { get; set; }
     }
 }

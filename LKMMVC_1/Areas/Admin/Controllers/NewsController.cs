@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LKMMVC_1.Models;
 using LKMMVC_1.Areas.Admin.ViewModel;
+using System.IO;
 
 namespace LKMMVC_1.Areas.Admin.Controllers
 {
@@ -21,7 +22,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             return View(db.News.ToList());
         }
 
-       
+
         // GET: Admin/News/Create
         public ActionResult Create()
         {
@@ -33,16 +34,58 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Content,PostDate")] News news)
+        public ActionResult Create([Bind(Include = "Title,Content,PostDate,")] News news)
         {
+            //---------------------------
+
             if (ModelState.IsValid)
             {
-                news.Content = HttpUtility.HtmlEncode(news.Content);
+                List<NewsPhoto> photoDetails = new List<NewsPhoto>();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
 
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = i+1 + Path.GetExtension(file.FileName); //Path.GetFileName(file.FileName);
+                        NewsPhoto photoDetail = new NewsPhoto()
+                        {
+                            FileName = fileName,
+                            //Extension = Path.GetExtension(fileName),
+                            PhotoLocation = Path.GetExtension(fileName)
+                        };
+                        photoDetails.Add(photoDetail);
+
+                        var path = Path.Combine(Server.MapPath("~/App_Data/Upload/"), photoDetail.FileName/* + photoDetail.PhotoLocation*/);
+                        file.SaveAs(path);
+                    }
+                }
+
+                news.NewsPhotos = photoDetails;
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+
+
+            //------------------------
+            //if (ModelState.IsValid)
+            //{
+
+
+            //    var a = Request.Files[0].FileName;
+            //    var b = Request.Files[1];
+            //    var c = Request.Files[2];
+
+
+            //    news.PostDate = news.PostDate.Add(DateTime.Now.TimeOfDay);
+            //    news.Content = HttpUtility.HtmlEncode(news.Content);
+
+            //    db.News.Add(news);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
             return View(news);
         }
@@ -67,7 +110,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
                 PostDate = news.PostDate,
                 Content = news.Content,
                 Title = news.Title,
-                Photos = newsPhotos
+                NewsPhotos = newsPhotos
             };
 
 
@@ -83,6 +126,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 news.Content = HttpUtility.HtmlEncode(news.Content);
 
                 db.Entry(news).State = EntityState.Modified;

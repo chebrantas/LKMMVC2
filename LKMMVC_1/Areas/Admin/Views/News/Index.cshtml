@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Sukurti naują", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,8 +29,8 @@
             @Html.DisplayFor(modelItem => item.PostDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NewsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NewsID })
+            @Html.ActionLink("Koreguoti", "Edit", new { id=item.NewsID }) |
+            @Html.ActionLink("Ištrinti", "Delete", new { id=item.NewsID })
         </td>
     </tr>
 }
