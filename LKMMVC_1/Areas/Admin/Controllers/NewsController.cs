@@ -38,14 +38,11 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "Title,Content,PostDate,")] News news)
         {
             //---------------------------
-            string uploadDirectoryYears = Path.Combine(Request.PhysicalApplicationPath, @"Photo\Naujienos\" + news.PostDate.Year.ToString());
+            string uploadDirectoryYears = Path.Combine(Request.PhysicalApplicationPath, @"Photo\News\" + news.PostDate.Year.ToString());
             string uploadDirectoryMonth = Path.Combine(uploadDirectoryYears, news.PostDate.Month.ToString());
             string uploadDirectory = Path.Combine(uploadDirectoryMonth, news.Title.ToUpper());
 
-            if (!Directory.Exists(uploadDirectory))
-            {
-                Directory.CreateDirectory(uploadDirectory);
-            }
+           
 
 
             if (ModelState.IsValid)
@@ -63,37 +60,9 @@ namespace LKMMVC_1.Areas.Admin.Controllers
                             FileName = fileName,
                             NewsID = news.NewsID,
                             //Extension = Path.GetExtension(fileName),
-                            PhotoLocation = Path.GetExtension(fileName)
+                            PhotoLocation = uploadDirectory //Path.GetExtension(fileName)
                         };
                         photoDetails.Add(photoDetail);
-
-
-                        ////uploadDirectory = Path.Combine(Request.PhysicalApplicationPath, @"Photo\Naujienos\" + DateTime.ParseExact(IrasoData, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture).Year.ToString());
-                        ////lblTest.Text += "<br />uploadDirectory=" + uploadDirectory.ToString();
-                        ////uploadDirectory = @"C:\Inetpub\wwwroot\Tvarkarasciai";
-                        ////jei nera pagrindines direktorijos ji sukuriama
-                        //if (!Directory.Exists(uploadDirectory))
-                        //{
-                        //    Directory.CreateDirectory(uploadDirectory);
-                        //}
-
-                        ////jei nera tokiu metu katalogo jis sukuriamas ir i ji keliami tu metu menesiu katalogai o juose tvarkarasciai
-                        ////uploadDirectoryYears = Path.Combine(uploadDirectory, DateTime.Now.Month.ToString());
-                        //uploadDirectoryYears = Path.Combine(uploadDirectory, DateTime.ParseExact(IrasoData, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture).Month.ToString());
-                        //lblTest.Text += "<br />uploadDirectoryYears=" + uploadDirectoryYears.ToString();
-                        //if (!Directory.Exists(uploadDirectoryYears))
-                        //{
-                        //    Directory.CreateDirectory(uploadDirectoryYears);
-                        //}
-
-                        ////jei nera tokiu metu ir tokio menesio katalogo jis sukuriamas ir i ji saugomi tvarkarasciai
-                        //uploadDirectoryMonth = Path.Combine(uploadDirectoryYears, katalogas_is_pavadinimo);
-                        //lblTest.Text += "<br />uploadDirectoryMonth=" + uploadDirectoryMonth.ToString();
-                        //if (!Directory.Exists(uploadDirectoryMonth))
-                        //{
-                        //    Directory.CreateDirectory(uploadDirectoryMonth);
-                        //}
-
 
 
                         //Regex rgx1 = new Regex("[?:ąĄ]");
@@ -119,8 +88,13 @@ namespace LKMMVC_1.Areas.Admin.Controllers
 
 
 
+                        if (!Directory.Exists(uploadDirectory))
+                        {
+                            Directory.CreateDirectory(uploadDirectory);
+                        }
 
-                        var path = Path.Combine(Server.MapPath("~/App_Data/Upload/"), photoDetail.FileName/* + photoDetail.PhotoLocation*/);
+                        //var path = Path.Combine(Server.MapPath("~/Photo/News/"), photoDetail.FileName/* + photoDetail.PhotoLocation*/);
+                        var path = Path.Combine(uploadDirectory, photoDetail.FileName/* + photoDetail.PhotoLocation*/);
                         file.SaveAs(path);
                     }
                 }
