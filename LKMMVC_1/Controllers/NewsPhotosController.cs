@@ -17,7 +17,7 @@ namespace LKMMVC_1.Controllers
         // GET: NewsPhotos
         public ActionResult Index()
         {
-            var newsPhotoes = db.NewsPhotos.Include(n => n.News);
+            var newsPhotoes = db.NewsPhotoDetails.Include(n => n.News);
             return View(newsPhotoes.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
+            NewsPhotoDetail newsPhoto = db.NewsPhotoDetails.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -48,11 +48,11 @@ namespace LKMMVC_1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsPhotoID,NewsID,PhotoLocation")] NewsPhoto newsPhoto)
+        public ActionResult Create([Bind(Include = "NewsPhotoID,NewsID,PhotoLocation")] NewsPhotoDetail newsPhoto)
         {
             if (ModelState.IsValid)
             {
-                db.NewsPhotos.Add(newsPhoto);
+                db.NewsPhotoDetails.Add(newsPhoto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -68,7 +68,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
+            NewsPhotoDetail newsPhoto = db.NewsPhotoDetails.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -82,7 +82,7 @@ namespace LKMMVC_1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NewsPhotoID,NewsID,PhotoLocation")] NewsPhoto newsPhoto)
+        public ActionResult Edit([Bind(Include = "NewsPhotoID,NewsID,PhotoLocation")] NewsPhotoDetail newsPhoto)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace LKMMVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
+            NewsPhotoDetail newsPhoto = db.NewsPhotoDetails.Find(id);
             if (newsPhoto == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace LKMMVC_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewsPhoto newsPhoto = db.NewsPhotos.Find(id);
-            db.NewsPhotos.Remove(newsPhoto);
+            NewsPhotoDetail newsPhoto = db.NewsPhotoDetails.Find(id);
+            db.NewsPhotoDetails.Remove(newsPhoto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

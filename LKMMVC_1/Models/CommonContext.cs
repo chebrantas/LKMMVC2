@@ -17,7 +17,7 @@ namespace LKMMVC_1.Models
 
         
         public DbSet<News> News { get; set; }
-        public DbSet<NewsPhoto> NewsPhotos { get; set; }
+        public DbSet<NewsPhotoDetail> NewsPhotoDetails { get; set; }
         public DbSet<ManagementBiography> ManagementBiographies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

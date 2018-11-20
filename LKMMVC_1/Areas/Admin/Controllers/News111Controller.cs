@@ -59,7 +59,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            var newsPhotos = db.NewsPhotos.Where(ph => ph.NewsID == id).ToList();
+            var newsPhotos = db.NewsPhotoDetails.Where(ph => ph.NewsID == id).ToList();
 
             NewsViewModel newsViewModel = new NewsViewModel()
             {

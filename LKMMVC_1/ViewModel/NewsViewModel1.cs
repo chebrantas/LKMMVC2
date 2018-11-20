@@ -13,6 +13,6 @@ namespace LKMMVC_1.ViewModel
         public string Content { get; set; }
         public DateTime PostDate { get; set; }
         //public string PhotoLocation { get; set; }
-        public List<NewsPhoto> NewsPhotos { get; set; }
+        public List<NewsPhotoDetail> NewsPhotos { get; set; }
     }
 }

@@ -17,6 +17,6 @@ namespace LKMMVC_1.Models
         public string Content { get; set; }
         [Display(Name = "Data")]
         public DateTime PostDate { get; set; }
-        public virtual ICollection<NewsPhoto> NewsPhotos { get; set; }
+        public virtual ICollection<NewsPhotoDetail> NewsPhotoDetails { get; set; }
     }
 }

@@ -179,7 +179,7 @@
     <Compile Include="Models\Nepanaudotos klases\ProfessionalExperience.cs" />
     <Compile Include="Models\Nepanaudotos klases\MilitaryRank.cs" />
     <Compile Include="Models\News.cs" />
-    <Compile Include="Models\NewsPhoto.cs" />
+    <Compile Include="Models\NewsPhotoDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\NewsViewModel1.cs" />
   </ItemGroup>
