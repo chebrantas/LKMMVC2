@@ -9,7 +9,6 @@ using System.Web.Mvc;
 using LKMMVC_1.Models;
 using LKMMVC_1.Areas.Admin.ViewModel;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace LKMMVC_1.Areas.Admin.Controllers
 {
@@ -37,15 +36,23 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Content,PostDate,")] News news)
         {
-            //---------------------------
+            CalculationHelper calculation = new CalculationHelper();
+
+            //-----------
+            FileUpload fil = new FileUpload();
+            fil.filesize = 1000;
+            var Message =  fil.UploadUserFile(Request.Files, SuportedTypes.Images);
+            //--------------
+
+
             string uploadDirectoryYears = Path.Combine(Request.PhysicalApplicationPath, @"Photo\News\" + news.PostDate.Year.ToString());
             string uploadDirectoryMonth = Path.Combine(uploadDirectoryYears, news.PostDate.Month.ToString());
-            string uploadDirectory = Path.Combine(uploadDirectoryMonth, news.Title.ToUpper());
+            string uploadDirectory = Path.Combine(uploadDirectoryMonth, calculation.ChangeNewsTitle(news.Title.ToUpper()));
 
            
 
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && Message!="")
             {
                 List<NewsPhotoDetail> photoDetails = new List<NewsPhotoDetail>();
                 for (int i = 0; i < Request.Files.Count; i++)
@@ -59,47 +66,23 @@ namespace LKMMVC_1.Areas.Admin.Controllers
                         {
                             FileName = fileName,
                             NewsID = news.NewsID,
-                            //Extension = Path.GetExtension(fileName),
-                            PhotoLocation = uploadDirectory //Path.GetExtension(fileName)
+                            PhotoLocation = uploadDirectory 
                         };
                         photoDetails.Add(photoDetail);
-
-
-                        //Regex rgx1 = new Regex("[?:ąĄ]");
-                        //Regex rgx2 = new Regex("[?:čČ]");
-                        //Regex rgx3 = new Regex("[?:ęĘėĖ]");
-                        //Regex rgx4 = new Regex("[?:įĮ]");
-                        //Regex rgx5 = new Regex("[?:šŠ]");
-                        //Regex rgx6 = new Regex("[?:ųŲūŪ]");
-                        //Regex rgx7 = new Regex("[?:žŽ]");
-                        //Regex rgx8 = new Regex("[^a-zA-Z0-9 -]");
-
-                        //katalogas_is_pavadinimo = rgx1.Replace(katalogas_is_pavadinimo, "a");
-                        //katalogas_is_pavadinimo = rgx2.Replace(katalogas_is_pavadinimo, "c");
-                        //katalogas_is_pavadinimo = rgx3.Replace(katalogas_is_pavadinimo, "e");
-                        //katalogas_is_pavadinimo = rgx4.Replace(katalogas_is_pavadinimo, "i");
-                        //katalogas_is_pavadinimo = rgx5.Replace(katalogas_is_pavadinimo, "s");
-                        //katalogas_is_pavadinimo = rgx6.Replace(katalogas_is_pavadinimo, "u");
-                        //katalogas_is_pavadinimo = rgx7.Replace(katalogas_is_pavadinimo, "z");
-                        //katalogas_is_pavadinimo = rgx8.Replace(katalogas_is_pavadinimo, "");
-                        //katalogas_is_pavadinimo = katalogas_is_pavadinimo.Replace(" ", "-");
-
-
-
-
 
                         if (!Directory.Exists(uploadDirectory))
                         {
                             Directory.CreateDirectory(uploadDirectory);
                         }
 
-                        //var path = Path.Combine(Server.MapPath("~/Photo/News/"), photoDetail.FileName/* + photoDetail.PhotoLocation*/);
-                        var path = Path.Combine(uploadDirectory, photoDetail.FileName/* + photoDetail.PhotoLocation*/);
+                        var path1 = Path.Combine(Server.MapPath("~/Photo/News/"), photoDetail.FileName);
+                        var path = Path.Combine(uploadDirectory, photoDetail.FileName);
                         file.SaveAs(path);
                     }
                 }
 
                 news.NewsPhotoDetails = photoDetails;
+                news.Title = news.Title.ToUpper();
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -124,7 +107,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-
+            ViewBag.ResultMessage = Message[1];
             return View(news);
         }
 

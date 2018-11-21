@@ -12,11 +12,11 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create","News", FormMethod.Post, new { enctype = @"multipart/form-data" } ))
+@using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = @"multipart/form-data" }))
 {
-            @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+    <div class="form-horizontal">
         <h4>News</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -42,31 +42,21 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
-        @{
-//for (int i = 1; i < 5; i++)
-//{
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.NewsPhotoDetails, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", enctype = "multipart/form-data", type = "file", multiple = "multiple" } })
-                        @Html.ValidationMessageFor(model => model.NewsPhotoDetails, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-            @*}*@
-        }
-
-
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewsPhotoDetails, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="NewsPhotoDetails" name="NewsPhotoDetails" class="form-control" type="file" multiple="multiple" />
+                @Html.ValidationMessageFor(model => model.NewsPhotoDetails, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -77,7 +67,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Į pradžią", "Index")
 </div>
 
 @section scripts
@@ -86,10 +76,10 @@
     <script src="~/Content/plugins/datepicker/locales/bootstrap-datepicker.lt.min.js"></script>
     <script>
         //RichTextEditor configuracija nustatoma kokios norime, ji yra faile ckeditor_config.js
-        //CKEDITOR.replace('Content', {
-        //    customConfig: '/Content/plugins/ckeditor/custom_config/ckeditor_config.js',
+        CKEDITOR.replace('Content', {
+            customConfig: '/Content/plugins/ckeditor/custom_config/ckeditor_config.js',
 
-        //});
+        });
 
         $('#PostDate').datepicker({
             format: "yyyy-mm-dd",
