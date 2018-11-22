@@ -36,24 +36,29 @@ namespace LKMMVC_1.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Content,PostDate,")] News news)
         {
-            CalculationHelper calculation = new CalculationHelper();
 
-            //-----------
-            FileUpload fil = new FileUpload();
-            fil.filesize = 1000;
-            var Message =  fil.UploadUserFile(Request.Files, SuportedTypes.Images);
+            CalculationHelper calculation = new CalculationHelper();
+            FileUploadValidation uploadedFiles = new FileUploadValidation();
+
+            //tikrinama ar is vis prisegtas failas
+            if (Request.Files[0].ContentLength > 0)
+            {
+                uploadedFiles.filesize = 2000;
+                uploadedFiles.ValidateUploadedUserFile(Request.Files, SuportedTypes.Images);
+            }
             //--------------
 
+
+
+
+
+            if (ModelState.IsValid && uploadedFiles.IsValid)
+            {
 
             string uploadDirectoryYears = Path.Combine(Request.PhysicalApplicationPath, @"Photo\News\" + news.PostDate.Year.ToString());
             string uploadDirectoryMonth = Path.Combine(uploadDirectoryYears, news.PostDate.Month.ToString());
             string uploadDirectory = Path.Combine(uploadDirectoryMonth, calculation.ChangeNewsTitle(news.Title.ToUpper()));
 
-           
-
-
-            if (ModelState.IsValid && Message!="")
-            {
                 List<NewsPhotoDetail> photoDetails = new List<NewsPhotoDetail>();
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
@@ -66,7 +71,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
                         {
                             FileName = fileName,
                             NewsID = news.NewsID,
-                            PhotoLocation = uploadDirectory 
+                            PhotoLocation = uploadDirectory
                         };
                         photoDetails.Add(photoDetail);
 
@@ -85,7 +90,11 @@ namespace LKMMVC_1.Areas.Admin.Controllers
                 news.Title = news.Title.ToUpper();
                 db.News.Add(news);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+
+                //pranesimas po sekmingo patalpinimo
+                ViewBag.ResultMessage = uploadedFiles.Message;
+                return View();
             }
 
 
@@ -107,7 +116,7 @@ namespace LKMMVC_1.Areas.Admin.Controllers
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            ViewBag.ResultMessage = Message[1];
+            ViewBag.ResultMessage = uploadedFiles.Message;
             return View(news);
         }
 

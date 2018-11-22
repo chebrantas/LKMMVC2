@@ -168,7 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CalculationHelper.cs" />
-    <Compile Include="Models\FileUpload.cs" />
+    <Compile Include="Models\FileUploadValidation.cs" />
     <Compile Include="Models\Nepanaudotos klases\Biography.cs" />
     <Compile Include="Models\CommonContext.cs" />
     <Compile Include="Models\CommonInitializer.cs" />
